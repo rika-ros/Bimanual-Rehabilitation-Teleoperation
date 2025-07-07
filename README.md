@@ -18,10 +18,10 @@ haptic_ws/
 ├── src/
 │ ├── haptic_pkg/ # Main package
 │ │ ├── launch/ # Launch files
-│ │ ├── urdf/ # Robot and object models
+│ │ ├── urdf/ # Object models
 │ │ ├── scripts/ # Python/C++ control scripts
 │ │ └── config/ # YAML configuration files
-├── ros_falcon/ # Novint Falcon packages
+├── ros_falcon/ # Novint Falcon package
 ├── build/
 ├── devel/
 └── README.md
