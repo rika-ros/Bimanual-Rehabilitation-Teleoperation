@@ -21,6 +21,7 @@ haptic_ws/
 │ │ ├── urdf/ # Robot and object models
 │ │ ├── scripts/ # Python/C++ control scripts
 │ │ └── config/ # YAML configuration files
+├── ros_falcon/ # Novint Falcon packages
 ├── build/
 ├── devel/
 └── README.md
