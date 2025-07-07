@@ -56,13 +56,13 @@ source devel/setup.bash
 1. Launch Gazebo and haptic setup
 
 ```
-roslaunch haptic_pkg bimanual_rehab.launch
+roslaunch haptic_pkg box_with_falcon_mainLaunch.launch
 ```
 
 2. Run the control scripts
 
 ```
-rosrun haptic_pkg controller_node.py
+rosrun haptic_pkg <script>.py
 ```
 
  
