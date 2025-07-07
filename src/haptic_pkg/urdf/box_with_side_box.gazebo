@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<robot name="floating_box" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+  <material name="blue">
+    <color rgba="0.203125 0.23828125 0.28515625 1.0" />
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0" />
+  </material>
+  <material name="grey">
+    <color rgba="0.2 0.2 0.2 1.0" />
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.423529411765 0.0392156862745 1.0" />
+  </material>
+  <material name="brown">
+    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0" />
+  </material>
+  <material
+    name="red">
+    <color rgba="0.80078125 0.12890625 0.1328125 1.0" />
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+  <!--Gazebo Visuals-->
+  <gazebo reference="base_footprint">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="base_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="left_contact">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="right_contact">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  <gazebo reference="left_contact_joint">
+    <provideFeedback>true</provideFeedback>
+  </gazebo>
+  <gazebo reference="right_contact_joint">
+    <provideFeedback>true</provideFeedback>
+  </gazebo>
+
+  <!-- root link, on the ground just below the model origin -->
+  <link name="base_footprint">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <joint
+    name="base_link_joint" type="fixed">
+    <origin xyz="0.0 0 0" rpy="0 0 0" />
+    <parent link="base_footprint" />
+    <child link="base_link" />
+  </joint>
+  <!-- the model -->
+  <link name="base_link">
+    <inertial>
+      <mass value="6" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="6*0.5*0.5/6" ixy="0.0" ixz="0.0"
+        iyy="6*0.5*0.5/6" iyz="0.0"
+        izz="6*0.5*0.5/6" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.5 0.5 0.5" /> <!-- does not need to match collision -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="0.5 0.5 0.5" /> <!-- does not need to match collision -->
+      </geometry>
+    </collision>
+  </link>
+  <!-- the side box models -->
+  <joint
+    name="left_contact_joint" type="fixed">
+    <origin xyz="-0.25-0.025 -0.2  0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="left_contact" />
+  </joint>
+  <link name="left_contact">
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.01*0.05*0.05/6" ixy="0.0" ixz="0.0"
+        iyy="0.01*0.05*0.05/6" iyz="0.0"
+        izz="0.01*0.05*0.05/6" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" />
+      <geometry>
+        <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="right_contact_joint" type="fixed">
+    <origin xyz="0.25+0.025 0.2 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="right_contact" />
+  </joint>
+  <link name="right_contact">
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0.0 0" />
+      <inertia ixx="0.01*0.05*0.05/6" ixy="0.0" ixz="0.0"
+        iyy="0.01*0.05*0.05/6" iyz="0.0"
+        izz="0.01*0.05*0.05/6" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0.0 0" />
+      <geometry>
+        <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo>
+    <plugin name="gazebo_ros_force_left" filename="libgazebo_ros_force.so">
+      <alwaysOn>true</alwaysOn>
+      <update>100</update>
+      <updateRate>100.0</updateRate>
+      <bodyName>left_contact</bodyName>
+      <topicName>force_left</topicName>
+      <commandTopic>cmd_vel_left</commandTopic>
+      <odometryTopic>left_contact_odom</odometryTopic>
+      <odometryFrame>left_contact_odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>left_contact</robotBaseFrame>
+      <publishOdometryTf>true</publishOdometryTf>
+      <yaw_velocity_p_gain>500</yaw_velocity_p_gain>
+      <x_velocity_p_gain>1000</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="gazebo_ros_force_right" filename="libgazebo_ros_force.so">
+      <alwaysOn>true</alwaysOn>
+      <update>100</update>
+      <updateRate>100.0</updateRate>
+      <bodyName>right_contact</bodyName>
+      <topicName>force_right</topicName>
+      <commandTopic>cmd_vel_right</commandTopic>
+      <odometryTopic>right_contact_odom</odometryTopic>
+      <odometryFrame>right_contact_odom</odometryFrame>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>right_contact</robotBaseFrame>
+      <publishOdometryTf>true</publishOdometryTf>
+      <yaw_velocity_p_gain>500</yaw_velocity_p_gain>
+      <x_velocity_p_gain>1000</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+    </plugin>
+  </gazebo> 
+  <gazebo>
+    <plugin name="gazebo_ros_force_box" filename="libgazebo_ros_force.so">
+      <alwaysOn>true</alwaysOn>
+      <update>100</update>
+      <updateRate>100.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>force_B_fromsides</topicName>
+      <commandTopic>cmd_vel_fromsides</commandTopic>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+      <publishOdometryTf>true</publishOdometryTf>
+      <yaw_velocity_p_gain>500</yaw_velocity_p_gain>
+      <x_velocity_p_gain>1000</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="gazebo_left_ft_sensor" filename="libgazebo_ros_f3d.so">
+      <updateRate>100.0</updateRate>
+      <topicName>left/force_feedback</topicName>
+      <bodyName>left_contact</bodyName>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin name="gazebo_right_ft_sensor" filename="libgazebo_ros_f3d.so">
+      <updateRate>100.0</updateRate>
+      <topicName>right/force_feedback</topicName>
+      <bodyName>right_contact</bodyName>
+    </plugin>
+  </gazebo>
+
+</robot>

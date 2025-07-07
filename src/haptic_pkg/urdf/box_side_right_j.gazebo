@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<robot name="floating_box_right" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <material name="black">
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+  <material name="blue">
+    <color rgba="0.203125 0.23828125 0.28515625 1.0" />
+  </material>
+  <material name="green">
+    <color rgba="0.0 0.8 0.0 1.0" />
+  </material>
+  <material name="grey">
+    <color rgba="0.2 0.2 0.2 1.0" />
+  </material>
+  <material name="orange">
+    <color rgba="1.0 0.423529411765 0.0392156862745 1.0" />
+  </material>
+  <material name="brown">
+    <color rgba="0.870588235294 0.811764705882 0.764705882353 1.0" />
+  </material>
+  <material
+    name="red">
+    <color rgba="0.80078125 0.12890625 0.1328125 1.0" />
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+  
+  <!--Gazebo Visuals-->
+  
+  <gazebo reference="base_link_right">
+    <material>Gazebo/red</material>
+  </gazebo>
+
+
+  <!-- the model origin in z axis at -sbig/2+ssmall/2  -->
+  <link name="base_link_right">
+    <inertial>
+      <mass value="3" />
+      <origin xyz="0 0 -0.20" />
+      <inertia ixx="0.005" ixy="0.0" ixz="0.0"
+        iyy="0.005" iyz="0.0"
+        izz="0.005" />
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" /> <!-- does not need to match collision -->
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 -0.20)" />
+      <geometry>
+        <box size="0.1 0.1 0.1" /> <!-- does not need to match collision -->
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo>
+    <plugin name="gazebo_ros_force_right" filename="libgazebo_ros_force.so">
+      <alwaysOn>true</alwaysOn>
+      <update>100</update>
+      <updateRate>100.0</updateRate>
+      <bodyName>base_link_right</bodyName>
+      <topicName>force_right</topicName>
+      <commandTopic>cmd_vel_right</commandTopic>
+      <odometryRate>100.0</odometryRate>
+      <robotBaseFrame>base_link_right</robotBaseFrame>
+      <publishOdometryTf>true</publishOdometryTf>
+      <yaw_velocity_p_gain>500</yaw_velocity_p_gain>
+      <x_velocity_p_gain>1000</x_velocity_p_gain>
+      <y_velocity_p_gain>1000</y_velocity_p_gain>
+      <cmdVelTimeOut>0.25</cmdVelTimeOut>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_right_fb_force" filename="libgazebo_ros_f3d.so">
+      <updateRate>100.0</updateRate>
+      <topicName>rightcontact_fb_force</topicName>
+      <bodyName>base_link_right</bodyName>
+    </plugin>
+  </gazebo>
+</robot>

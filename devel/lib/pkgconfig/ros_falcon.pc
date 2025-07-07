@@ -1,0 +1,8 @@
+prefix=/home/user/_wsAryan/haptic_ws/devel
+
+Name: ros_falcon
+Description: Description of ros_falcon
+Version: 0.0.0
+Cflags: -I/home/user/_wsAryan/haptic_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

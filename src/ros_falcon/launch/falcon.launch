@@ -1,0 +1,7 @@
+<launch>
+<group ns= 'f1'>
+    <node pkg="ros_falcon" type="joystick" name="joystick">
+    </node>
+</group>
+
+</launch>

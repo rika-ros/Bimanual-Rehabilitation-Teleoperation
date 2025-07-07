@@ -1,0 +1,2 @@
+haptic_pkg:ros_falcon
+-DCATKIN_DEVEL_PREFIX=/home/user/_wsAryan/haptic_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/_wsAryan/haptic_ws/install -G Unix Makefiles

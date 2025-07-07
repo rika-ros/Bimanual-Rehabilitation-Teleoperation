@@ -1,0 +1,15 @@
+<launch>
+<!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+     <arg name="world_name" value="$(find haptic_pkg)/worlds/wall_aerial.world"/> 
+	<arg name="paused" default="false"/>
+	<arg name="use_sim_time" default="true"/>
+	<arg name="gui" default="true"/>
+	<arg name="headless" default="false"/>
+	<arg name="debug" default="false"/>
+     </include>
+<!-- Spawn robot into gazebo   <include file="$(find haptic_pkg)/launch/s_box_j1.launch" />  -->
+<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-file $(find haptic_pkg)/urdf/simple_box_j2.gazebo -urdf -model floating_box -x 0 -y 0 -z 0.25"/>
+<node name="ros_falcon_left" type="joystick" pkg="ros_falcon" />
+<node name="ros_falcon_right" type="joystick1" pkg="ros_falcon" />
+</launch>

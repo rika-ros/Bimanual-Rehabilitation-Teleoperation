@@ -1,0 +1,6 @@
+<launch>
+    <!-- <include file="$(find haptic_pkg)/launch/box_gazebo.launch" /> -->
+    <include file="$(find haptic_pkg)/launch/box_gazebo_4P.launch" />
+    <node name="ros_falcon_left" type="joystick" pkg="ros_falcon" />
+    <node name="ros_falcon_right" type="joystick1" pkg="ros_falcon" />
+</launch>

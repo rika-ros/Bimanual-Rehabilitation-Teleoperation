@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node pkg="haptic_pkg" type="Box_control_x" name="Box_control_x" output="screen"/>
+  <node pkg="haptic_pkg" type="Box_control_y" name="Box_control_y" output="screen"/>
+  <node pkg="haptic_pkg" type="Box_control_z" name="Box_control_z" output="screen"/>
+</launch>
