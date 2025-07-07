@@ -53,13 +53,13 @@ source devel/setup.bash
 
 ## Running the Simulation
 
-1.Launch Gazebo and haptic setup
+1. Launch Gazebo and haptic setup
 
 ```
 roslaunch haptic_pkg bimanual_rehab.launch
 ```
 
-2.Run the control scripts
+2. Run the control scripts
 
 ```
 rosrun haptic_pkg controller_node.py
