@@ -37,11 +37,32 @@ haptic_ws/
 
 ## Setup Instructions
 
-- Clone the repo
-  ```git clone https://github.com/rh-ch/Bimanual-Rehabilitation-Teleoperation.git```
-- Build the ws
-  ``` cd ~/haptic_ws
-      catkin_make
-      source devel/setup.bash```
-  
+1. Clone the repo
+
+```
+git clone https://github.com/rh-ch/Bimanual-Rehabilitation-Teleoperation.git
+```
+
+2. Build and source the ws
+
+```
+cd ~/haptic_ws
+catkin_make
+source devel/setup.bash
+```
+
+## Running the Simulation
+
+1.Launch Gazebo and haptic setup
+
+```
+roslaunch haptic_pkg bimanual_rehab.launch
+```
+
+2.Run the control scripts
+
+```
+rosrun haptic_pkg controller_node.py
+```
+
  
