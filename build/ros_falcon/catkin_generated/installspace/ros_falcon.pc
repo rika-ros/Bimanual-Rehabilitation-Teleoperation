@@ -1,8 +1,0 @@
-prefix=/home/user/_wsAryan/haptic_ws/install
-
-Name: ros_falcon
-Description: Description of ros_falcon
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 
