@@ -47,7 +47,7 @@ git clone https://github.com/rh-ch/Bimanual-Rehabilitation-Teleoperation.git
 2. Build and source the ws
 
 ```
-cd ~/haptic_ws
+cd ~/bimanual_ws
 catkin_make
 source devel/setup.bash
 ```
@@ -60,10 +60,12 @@ source devel/setup.bash
 roslaunch haptic_pkg box_with_falcon_mainLaunch.launch
 ```
 
-2. Run the control scripts
+2. Run the control script in another terminal
 
 ```
-rosrun haptic_pkg <script>.py
+source devel/setup.bash
+cd ~/bimanual_ws/src/haptic_pkg/scripts/
+python <script>.py
 ```
 
  
