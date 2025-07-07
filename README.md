@@ -14,7 +14,7 @@ This repository contains a ROS1 based implementation of a bimanual assist-as-nee
 
 ## Project Structure
 ```
-haptic_ws/
+bimanual_ws/
 ├── src/
 │ ├── haptic_pkg/ # Main package
 │ │ ├── launch/ # Launch files
