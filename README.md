@@ -1,7 +1,7 @@
 # Bimanual Rehabilitation Teleoperation (ROS1-Novint Falcon)
 
 This repository contains a ROS1 based implementation of a bimanual assist-as-needed rehabilitation system using Novint Falcon haptic devices. The setup is used for simulating and controlling upper-limb rehab tasks with haptic feedback.
-
+Based on the original control scripts and workspace by Jeslin Jacob, with further modifications.
 
 ## Features
 
