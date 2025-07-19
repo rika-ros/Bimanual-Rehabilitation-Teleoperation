@@ -67,5 +67,9 @@ source devel/setup.bash
 cd ~/bimanual_ws/src/haptic_pkg/scripts/
 python <script>.py
 ```
+## Contact
 
+For queries or collaboration:  
+📧 rchps.05@gmail.com/ashikachandavarkar@gmail.com
+📂 GitHub: [rika-ros](https://github.com/rika-ros)
  
